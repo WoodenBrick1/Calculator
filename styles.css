@@ -1,0 +1,50 @@
+
+*,
+*:before,
+*::after
+{
+    margin: 0;
+    padding: 0;
+    border-style: box-sizing;
+}
+
+body{
+    background-color: rgb(104, 89, 89)
+}
+
+
+#calculator
+{
+    background-color: rgb(177, 160, 160);
+    width: 500px;
+    height: 700px;
+    margin: 80px auto;
+
+    border: 8px solid black;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#display-box
+{
+    height: 30%;
+    width: 100%;
+  
+}
+
+#display
+{
+    margin: 50px auto 0;
+    width: 80%;
+    height: 50%;
+    background-color: white;
+}
+
+#buttons 
+{
+    background-color: grey;
+    height: 70%;
+    width: 100%;
+   
+}
