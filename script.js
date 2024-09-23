@@ -15,9 +15,7 @@ const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
 
 
-
-
-const operator = (num1, num2, operator) =>
+const calculate = (num1, num2, op) =>
 {
 
     switch (op)
@@ -29,7 +27,7 @@ const operator = (num1, num2, operator) =>
         case '*':
             return multiply(num1, num2);
         case '/':
-            return divide(num1, num2);
+            return (divide(num1, num2)).toFixed(6);
 
         default:
             console.log("ERROR");
@@ -47,22 +45,41 @@ const updateDisplay = (num) =>
 {
    display.textContent += num;
 
+   const text = String(display.textContent);
     if (!secondNumber)
         num1 += num;
     else 
         num2 += num;
+
     
+        console.log(text.length);
+    if (text.length > 9)
+        display.style.fontSize = "40px";
+    else
+        display.style.fontSize = "80px"
    
 }
 
 const processOperator = (operator) =>
 {
+
+   
+
+    
     let displayInput = String(display.textContent);
     if (displayInput == "" || ['+', '-', '*', '/'].includes(displayInput.slice(-1)))
         return;
 
+
+    // if there are 2 or more operators
+    if (secondNumber)
+        {
+            num1 = calculate(parseInt(num1), parseInt(num2), op);
+            num2 = "";
+        }
     display.textContent += operator;
     op = operator;
+
     secondNumber = true;
 
 
@@ -76,6 +93,10 @@ const reset = () =>
     op = "";
     secondNumber = false;
 }
+
+reset();
+
+
 numbers.forEach(button => button.addEventListener("click", () => updateDisplay(button.textContent)));
 
 operators.forEach(button => button.addEventListener("click", () => processOperator(button.textContent)));
@@ -84,7 +105,11 @@ clearButton.addEventListener("click", reset)
 equalsButton.addEventListener("click", () =>
 {
 
-    let result = operator(parseInt(num1), parseInt(num2), op);
+    if (num1 === "" || num2 === "" || op === "")
+    {
+        return;
+    }
+    let result = calculate(parseInt(num1), parseInt(num2), op);
     reset();
     display.textContent = result;
     num1 = result;
