@@ -27,6 +27,9 @@ const calculate = (num1, num2, op) =>
         case '*':
             return multiply(num1, num2);
         case '/':
+            
+            if (num2 == 0)
+                return "NO";
             return (divide(num1, num2)).toFixed(6);
 
         default:
